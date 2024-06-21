@@ -35,9 +35,10 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
-tasks.jacocoTestReport {
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
+sonar {
+    properties {
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
+        property("sonar.sources", "src/main")
+        property("sonar.tests", "src/test")
     }
 }

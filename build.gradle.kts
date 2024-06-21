@@ -21,6 +21,26 @@ allprojects {
         // Use Maven Central for resolving dependencies.
         mavenCentral()
     }
+
+    apply(plugin = "org.sonarqube")
+    sonar {
+        properties {
+            property("sonar.projectKey", "nikfarjam_gradle-multimodule")
+            property("sonar.organization", "gradle-multimodule") 
+            property("sonar.host.url", "https://sonarcloud.io")
+            property("sonar.sourceEncoding", "UTF-8")
+        }
+    }
+
+    plugins.withId("jacoco") {
+        this@allprojects.tasks {
+            val jacocoTestReport = "jacocoTestReport"(JacocoReport::class) {
+                reports {
+                    xml.required.set(true)
+                }
+            }
+        }
+    }
 }
 
 
@@ -28,15 +48,5 @@ allprojects {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-sonar {
-    properties {
-        property("sonar.projectKey", "nikfarjam_gradle-multimodule")
-        property("sonar.projectName", "gradle-multimodule")
-        property("sonar.organization", "gradle-multimodule") 
-        property("sonar.host.url", "https://sonarcloud.io")
-
     }
 }
