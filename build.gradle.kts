@@ -21,12 +21,14 @@ allprojects {
         mavenCentral()
     }
 
+    apply(plugin="org.sonarqube")
     sonar {
         properties {
             property("sonar.projectKey", "nikfarjam_gradle-multimodule")
             property("sonar.organization", "nikfarjam") 
             property("sonar.host.url", "https://sonarcloud.io")
             property("sonar.sourceEncoding", "UTF-8")
+            property ("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
         }
     }
 
@@ -46,6 +48,10 @@ allprojects {
         }
     }
 
+    // tasks.named("sonar") {
+    //     dependsOn("check")
+    //     dependsOn("jacocoTestReport")
+    // }
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

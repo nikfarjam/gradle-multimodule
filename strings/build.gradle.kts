@@ -12,13 +12,9 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     jacoco
+    id("org.sonarqube") version "5.0.0.4638"
 }
 
-sonar {
-    properties {
-        property("sonar.coverage.jacoco.xmlReportPaths","build/reports/jacoco/test/jacocoTestReport.xml")
-    }
-}
 
 dependencies {
     // Use the Kotlin JUnit 5 integration.
