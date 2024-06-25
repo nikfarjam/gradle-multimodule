@@ -27,8 +27,6 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-      env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
     # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
@@ -41,6 +39,8 @@ jobs:
       run: ./gradlew check
 
     - name: Code Quality with Gradle Wrapper
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: ./gradlew sonar
       
     - name: Build with Gradle Wrapper
@@ -73,7 +73,8 @@ jobs:
 
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
-    - name: Generate and submit dependency graph
-      uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
     - name: Setup GradleW
       run:  gradle wrapper
+    - name: Generate and submit dependency graph
+      uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
