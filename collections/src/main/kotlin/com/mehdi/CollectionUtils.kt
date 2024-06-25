@@ -5,17 +5,13 @@ package com.mehdi
 
 class CollectionUtils {
     fun <T> merge(list1: List<T>, list2: List<T>): List<T> {
-        // val result = MutableList<T>(100)
-        // for (item in list1){
-        //     result.add(item)
-        // }
-        // for (item in list2){
-        //     result.add(item)
-        // }
-        // return result
         return  buildList() {
             addAll(list1)
             addAll(list2)
         }
+    }
+
+    fun <T> retainAll(list1: List<T>, list2: List<T>): List<T> {
+        return list1.retainAll(list2)
     }
 }
