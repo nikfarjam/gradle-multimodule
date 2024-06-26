@@ -24,3 +24,9 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
+
+sonar {
+    properties {
+        property ("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
+    }
+}
